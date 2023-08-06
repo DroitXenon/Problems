@@ -1,0 +1,27 @@
+#include<iostream>
+using namespace std;
+int A[100001];
+int main() {
+	int k, num, le, sum;
+	cin >> k;
+	le = 0;
+	sum = 0;
+	for (int i = 1; i <= k; i++) {
+		cin >> num;
+		if (num != 0) {
+			le++;
+			A[le] = num;
+		}
+		else le--;
+	}
+	if (le == 0) {
+		cout << "0"; 
+		return 0;
+	}
+	else for (int i = 1; i <= le; i++)
+		sum += A[i];
+	cout << sum;
+	return 0;
+}
+
+//20 min AC

@@ -1,0 +1,106 @@
+#include <iostream>
+using namespace std;
+int N, M,etop;
+struct EDGE {
+	int u, v, len;
+	EDGE *nex;
+}epool[100001];
+
+struct NODE {
+	EDGE *fir;
+}nodes[10001];
+
+void addedge(int u, int v, int len) {
+	epool[etop].u = u;
+	epool[etop].v = v;
+	epool[etop].len = len;
+	epool[etop].nex = nodes[u].fir;
+	nodes[u].fir = &epool[etop];
+	etop++;
+}
+
+void dfs(int x1) {
+	visited[x1]=true;
+	cout << x1 << ' ';
+	EDGE* e = nodes[x1].fir;
+	while (e != NULL) {
+		if (!visited[e->v]) dfs(e->v);
+		e = e->nex;
+	}
+}
+
+int main() {
+	int i,u,v,le,id,n,len;
+	cin >> N >> M;
+	for (int i = 1; i <= M; i++) {
+		cin >> u>> v >> len;
+		addedge(u, v, len);
+	}
+	cin >> id;
+	EDGE *e = nodes[id].fir;
+	while (e != NULL) {
+		//e->v = (*e).v
+		//e->u;
+		cout << e->u << e->v << len;
+		e = e->nex;
+	}
+	return 0;
+}
+
+5 7
+1 2 1 1 3 1
+2 3 1 2 4 1 
+3 4 1 3 5 1
+4 5 1
+
+
+#include<iostream>
+using namespace std;
+int etop;
+struct EDGE {
+	int u, v;
+	EDGE* nex;
+}epool[10001];
+
+struct NODE {
+	EDGE* fir;
+}nodes[10001];
+
+void addedge(int u, int v) {
+	epool[etop].u = u;
+	epool[etop].v = v;
+	epool[etop].nex = nodes[u].fir;
+	nodes[u].fir = &epool[etop];
+	etop++;
+}
+
+int main() {
+	int N, M,u,v,no;
+	cin >> N >> M;
+	for (int i = 1; i <= M; i++) {
+		cin >> u >> v;
+		addedge(u, v);
+	}
+	cin >> no;
+	EDGE* e = nodes[no].fir;
+	while (e) {
+		cout << e->u << e->v;
+		e = e->nex;
+	}
+	return 0;
+}
+
+
+5 7
+1 2  1 3 
+2 3  2 4 
+3 4  3 5 
+4 5 
+
+
+8 7
+0 1 0 2
+1 6 1 5
+2 3 
+3 4 
+3 7 

@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main() {
+	string str, direction;
+	cin >> str;
+	int sum;
+	sum = 0;
+	while (str != "99999") {
+		sum = int(str[0]) + int(str[1]);
+			if (sum == 0) {
+				cout << direction << " " << str[2] << str[3] << str[4] << endl;
+			}
+			else if (sum % 2 == 0) {
+				direction = "right";
+				cout << direction << " " << str[2] << str[3] << str[4] << endl;
+			}
+			else {
+				direction = "left";
+				cout << direction << " " << str[2] << str[3] << str[4] << endl;
+			}
+		//cout << int(str[0]) << int(str[1]);
+		cin >> str;
+	}
+	return 0;
+}
